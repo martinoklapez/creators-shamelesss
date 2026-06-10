@@ -402,21 +402,6 @@ body {
     z-index: 1;
   }
 
-  .creator-card:first-of-type::after {
-    background: #000;
-    border-radius: 999px;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-    content: "";
-    height: 24px;
-    left: 50%;
-    pointer-events: none;
-    position: absolute;
-    top: 12px;
-    transform: translateX(-50%);
-    width: 30%;
-    z-index: 2;
-  }
-
   .creator-feed-empty {
     font-size: clamp(14px, 3.8vw, 16px);
     padding: 0 6vw;
