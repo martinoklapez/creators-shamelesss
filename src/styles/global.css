@@ -72,7 +72,8 @@ body {
   opacity: 1;
 }
 
-.brand-subtitle {
+.brand-subtitle,
+.booking-subtitle {
   color: #afafaf;
   display: block;
   font-size: inherit;
@@ -162,7 +163,7 @@ body {
   font-size: min(5vw, 72px);
   font-weight: 600;
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.05;
   margin: 0 0 min(2.5vw, 28px);
   text-align: center;
 }

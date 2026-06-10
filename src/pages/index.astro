@@ -23,7 +23,10 @@ const config = siteConfig as SiteConfig;
           </div>
           <div class="hero-stage">
             <CreatorFeed videos={config.creatorVideos} />
-            <BookingPanel bookingTitle={config.bookingTitle} />
+            <BookingPanel
+              bookingTitle={config.bookingTitle}
+              bookingSubtitle={config.bookingSubtitle}
+            />
           </div>
         </div>
       </div>

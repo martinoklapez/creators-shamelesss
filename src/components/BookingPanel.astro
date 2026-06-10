@@ -1,12 +1,16 @@
 ---
 interface Props {
   bookingTitle: string;
+  bookingSubtitle: string;
 }
 
-const { bookingTitle } = Astro.props;
+const { bookingTitle, bookingSubtitle } = Astro.props;
 ---
 
 <section class="booking-panel" id="booking-panel" aria-label="Book a call">
-  <h2 class="booking-title" id="booking-title">{bookingTitle}</h2>
+  <h2 class="booking-title" id="booking-title">
+    {bookingTitle}
+    <span class="booking-subtitle">{bookingSubtitle}</span>
+  </h2>
   <div id="my-cal-inline-shamelesss"></div>
 </section>
