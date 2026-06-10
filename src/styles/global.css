@@ -328,7 +328,7 @@ body {
 
 @media (max-width: 900px), ((max-width: 1100px) and (orientation: portrait)) {
   .brand-home {
-    --card-w: min(78vw, 300px);
+    --card-w: min(90vw, 380px);
     --scroll-progress: 1;
   }
 
@@ -347,52 +347,74 @@ body {
   }
 
   .brand-title {
-    animation: none !important;
-    font-size: clamp(28px, 9vw, 40px);
-    left: auto;
-    line-height: 1.05;
-    opacity: 1 !important;
-    padding: calc(16px + env(safe-area-inset-top, 0px)) 6vw 5vw;
-    position: relative;
-    right: auto;
-    top: auto;
-    transform: none !important;
+    display: none;
   }
 
   .hero-stage {
+    align-items: center;
     flex: 1;
-    gap: 8vw;
+    gap: 10vw;
     justify-content: flex-start;
-    padding: 0 0 10vw;
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 0 8vw;
     width: 100%;
   }
 
   .creator-feed {
     animation: none !important;
-    gap: 4vw;
-    justify-content: flex-start;
-    margin: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
     max-width: 100%;
     opacity: 1 !important;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    padding: 0 max(6vw, env(safe-area-inset-left, 0px)) 0
-      max(6vw, env(safe-area-inset-right, 0px));
-    scroll-padding-inline: 6vw;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    overflow: visible;
+    padding: 0;
     transform: none !important;
     width: 100%;
   }
 
-  .creator-feed::-webkit-scrollbar {
+  .creator-card {
+    background: #000;
+    border-radius: 32px;
+    box-shadow:
+      0 30px 70px rgba(0, 0, 0, 0.18),
+      0 10px 24px rgba(0, 0, 0, 0.1);
+    flex: 0 0 auto;
+    position: relative;
+    width: var(--card-w);
+  }
+
+  .creator-card:not(:first-of-type) {
     display: none;
   }
 
-  .creator-card {
-    border-radius: 16px;
-    flex: 0 0 var(--card-w);
-    scroll-snap-align: center;
+  .creator-card:first-of-type iframe {
+    border-radius: 28px;
+  }
+
+  .creator-card:first-of-type::before {
+    border: 3px solid #d5d5db;
+    border-radius: 36px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+    content: "";
+    inset: -6px;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .creator-card:first-of-type::after {
+    background: #000;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+    content: "";
+    height: 24px;
+    left: 50%;
+    pointer-events: none;
+    position: absolute;
+    top: 12px;
+    transform: translateX(-50%);
+    width: 30%;
+    z-index: 2;
   }
 
   .creator-feed-empty {
@@ -516,13 +538,12 @@ body {
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
-  .brand-title {
-    font-size: clamp(22px, 5vw, 32px);
-    padding-bottom: 3vw;
+  .brand-home {
+    --card-w: min(42vh, 280px);
   }
 
-  .brand-home {
-    --card-w: min(42vw, 220px);
+  .hero-stage {
+    padding-top: calc(6px + env(safe-area-inset-top, 0px));
   }
 
   #my-cal-inline-shamelesss,
