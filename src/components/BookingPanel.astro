@@ -1,0 +1,12 @@
+---
+interface Props {
+  bookingTitle: string;
+}
+
+const { bookingTitle } = Astro.props;
+---
+
+<section class="booking-panel" id="booking-panel" aria-label="Book a call">
+  <h2 class="booking-title" id="booking-title">{bookingTitle}</h2>
+  <div id="my-cal-inline-shamelesss"></div>
+</section>

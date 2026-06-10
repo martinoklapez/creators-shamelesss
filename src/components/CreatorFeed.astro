@@ -1,0 +1,34 @@
+---
+import { parseTikTokUrl } from "../utils/tiktok";
+
+interface Props {
+  videos: string[];
+}
+
+const { videos } = Astro.props;
+const cards = videos.flatMap((url) => {
+  const parsed = parseTikTokUrl(url);
+  return parsed ? [parsed] : [];
+});
+---
+
+<section class="creator-feed" id="creator-feed" aria-label="Creator videos">
+  {
+    cards.length > 0 ? (
+      cards.map((card) => (
+        <article class="creator-card">
+          <iframe
+            src={card.playerUrl}
+            allow="fullscreen"
+            title={`TikTok by @${card.username}`}
+            loading="lazy"
+          />
+        </article>
+      ))
+    ) : (
+      <p class="creator-feed-empty">
+        Could not load TikTok videos. Check that URLs contain /video/ or /photo/ followed by an ID.
+      </p>
+    )
+  }
+</section>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  appName: string;
+  appDescription: string;
+  appStoreUrl: string;
+}
+
+const { appName, appDescription, appStoreUrl } = Astro.props;
+---
+
+<div class="brand-side-left">
+  <div class="brand-brand">
+    <div class="brand-brand-icons">
+      <img src="/assets/images/app-icon.png" alt={appName} class="brand-logo" />
+      <img src="/assets/images/qr-code.svg" alt={`Download ${appName}`} class="brand-qr" />
+    </div>
+    <span class="brand-name" id="app-name">{appName}</span>
+  </div>
+  <p id="app-description">{appDescription}</p>
+  <a href={appStoreUrl} class="brand-cta" id="get-app">Get {appName}</a>
+</div>

@@ -1,0 +1,459 @@
+@font-face {
+  font-display: swap;
+  font-family: "GT America Compressed";
+  font-style: normal;
+  font-weight: 900;
+  src: url("/assets/fonts/GT-America-Compressed-Black.ttf") format("truetype");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  line-height: inherit;
+  margin: 0;
+  background: #fff;
+  color: #000;
+}
+
+.brand-home {
+  --card-w: min(28vw, 300px);
+  --scroll-progress: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.brand-home--ready {
+  opacity: 1;
+}
+
+.brand-hero {
+  height: 280vh;
+}
+
+.brand-view {
+  height: 100vh;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+}
+
+.brand-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: min(6.2vw, 89.28px);
+  font-weight: 600;
+  left: min(2vw, 28.8px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0;
+  opacity: 1;
+  position: absolute;
+  right: min(2vw, 28.8px);
+  text-align: center;
+  top: min(8vw, 86.4px);
+  transform: scale(1);
+  transform-origin: center top;
+  z-index: 5;
+}
+
+.hero-stage {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  padding: min(20vw, 230.4px) min(4vw, 48px) 0;
+  position: relative;
+  width: 100%;
+}
+
+.creator-feed {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: min(2vw, 24px);
+  margin: 0 auto;
+  max-width: min(92vw, 960px);
+  position: relative;
+  opacity: calc(1 - var(--scroll-progress) * 1.25);
+  transform: scale(calc(1 - var(--scroll-progress) * 0.5)) translateY(calc(var(--scroll-progress) * -52vh));
+  transform-origin: center top;
+  width: 100%;
+  will-change: transform, opacity;
+  z-index: 2;
+}
+
+.creator-card {
+  flex: 0 0 var(--card-w);
+  width: var(--card-w);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  scroll-snap-align: center;
+}
+
+.creator-card iframe {
+  aspect-ratio: 9 / 16;
+  border: none;
+  display: block;
+  width: 100%;
+}
+
+.creator-feed-empty {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+.booking-panel {
+  left: 50%;
+  margin-top: 0;
+  max-width: min(92vw, 960px);
+  opacity: calc(clamp(0, (var(--scroll-progress) - 0.25) / 0.55, 1));
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(calc(-50% + (1 - clamp(0, (var(--scroll-progress) - 0.25) / 0.55, 1)) * 45vh));
+  width: min(92vw, 960px);
+  will-change: transform, opacity;
+  z-index: 3;
+}
+
+.booking-panel.is-interactive {
+  pointer-events: auto;
+}
+
+.booking-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: min(5vw, 72px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 min(2.5vw, 28px);
+  text-align: center;
+}
+
+#my-cal-inline-shamelesss {
+  height: auto;
+  max-height: none;
+  overflow: visible;
+  width: 100%;
+}
+
+#my-cal-inline-shamelesss iframe {
+  border: none;
+  display: block;
+  max-height: none !important;
+  overflow: hidden;
+  width: 100% !important;
+}
+
+@supports (animation-timeline: scroll()) {
+  .brand-title {
+    animation: title-fade linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0% 30%;
+  }
+
+  .creator-feed {
+    animation: feed-rise linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0% 65%;
+    transform: none;
+  }
+
+  .booking-panel {
+    animation: booking-reveal linear both;
+    animation-timeline: scroll(root);
+    animation-range: 20% 90%;
+    opacity: 0;
+    pointer-events: none;
+    top: 50%;
+    transform: translateX(-50%) translateY(calc(-50% + 45vh));
+  }
+
+  .booking-panel.is-interactive {
+    pointer-events: auto;
+  }
+}
+
+@keyframes title-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes feed-rise {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.4) translateY(-52vh);
+  }
+}
+
+@supports not (animation-timeline: scroll()) {
+  .brand-title {
+    opacity: calc(1 - var(--scroll-progress) * 1.1);
+    transform: scale(calc(1 - var(--scroll-progress) * 0.18));
+  }
+}
+
+@keyframes booking-reveal {
+  0% {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(calc(-50% + 45vh));
+  }
+  100% {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+.brand-side-left {
+  bottom: min(2vw, 28.8px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+  left: min(2vw, 28.8px);
+  max-width: min(18vw, 259.2px);
+  position: fixed;
+  z-index: 100;
+}
+
+.brand-brand {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: min(0.8vw, 10px);
+}
+
+.brand-brand-icons {
+  align-items: center;
+  display: flex;
+  gap: min(1.2vw, 17.28px);
+}
+
+.brand-name {
+  color: #000;
+  font-size: min(3vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.brand-brand .brand-logo,
+.brand-brand .brand-qr {
+  height: auto;
+  width: min(6.22vw, 89.57px);
+}
+
+.brand-brand .brand-logo {
+  border-radius: 22%;
+}
+
+.brand-side-left p {
+  color: #555;
+  font-size: min(1.02vw, 14.69px);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.brand-cta {
+  display: none;
+}
+
+.brand-side-right {
+  bottom: min(2vw, 28.8px);
+  position: fixed;
+  right: min(2vw, 28.8px);
+  z-index: 100;
+}
+
+.brand-side-right-row {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: min(2.2vw, 31.68px);
+  justify-content: flex-end;
+}
+
+.brand-side-right nav {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: min(0.4vw, 6px);
+  justify-content: flex-end;
+}
+
+.brand-side-right a {
+  color: #555;
+  font-size: min(1.02vw, 14.69px);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.brand-side-right a:hover {
+  color: #000;
+}
+
+@media (max-width: 800px) {
+  .brand-home {
+    --card-w: 56vw;
+  }
+
+  .brand-hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .brand-view {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    position: static;
+  }
+
+  .brand-title {
+    font-size: 10vw;
+    padding: 12vw 6vw 6vw;
+  }
+
+  .hero-stage {
+    justify-content: flex-start;
+    padding: 0 0 8vw;
+  }
+
+  .creator-feed {
+    gap: 4vw;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 6vw;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    transform: none;
+  }
+
+  .creator-card {
+    border-radius: 3vw;
+    scroll-snap-align: center;
+  }
+
+  .booking-panel {
+    left: auto;
+    margin-top: 8vw;
+    opacity: 1;
+    padding: 0 6vw;
+    pointer-events: auto;
+    position: relative;
+    top: auto;
+    transform: none;
+    width: 100%;
+  }
+
+  .booking-title {
+    font-size: 8vw;
+    margin-bottom: 5vw;
+  }
+
+  #my-cal-inline-shamelesss iframe {
+    min-height: 480px;
+  }
+
+  .brand-side-left {
+    align-items: center;
+    background: #fff;
+    gap: 4vw;
+    left: 0;
+    max-width: 100%;
+    padding: 12vw 12vw 8vw;
+    position: relative;
+    text-align: center;
+    top: 0;
+    z-index: 20;
+  }
+
+  .brand-brand {
+    align-items: center;
+    gap: 3vw;
+  }
+
+  .brand-name {
+    font-size: 7.5vw;
+  }
+
+  .brand-brand .brand-logo {
+    width: 20vw;
+  }
+
+  .brand-brand .brand-qr {
+    display: none;
+  }
+
+  .brand-side-left p {
+    font-size: 3.8vw;
+    line-height: 1.5;
+  }
+
+  .brand-cta {
+    background: #000;
+    border-radius: 3vw;
+    color: #fff;
+    display: inline-block;
+    font-size: 4vw;
+    font-weight: 600;
+    padding: 4vw 8vw;
+    text-decoration: none;
+  }
+
+  .brand-side-right {
+    background: #fff;
+    max-width: 100%;
+    padding: 2vw 6vw 10vw;
+    position: relative;
+    width: auto;
+    z-index: 20;
+  }
+
+  .brand-side-right-row {
+    align-items: center;
+    flex-direction: column;
+    gap: 6vw;
+  }
+
+  .brand-side-right nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5vw;
+    justify-content: center;
+  }
+
+  .brand-side-right a {
+    font-size: 3.8vw;
+  }
+}

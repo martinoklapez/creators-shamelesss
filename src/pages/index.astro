@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CreatorFeed from "../components/CreatorFeed.astro";
+import BookingPanel from "../components/BookingPanel.astro";
+import BrandSideLeft from "../components/BrandSideLeft.astro";
+import BrandFooter from "../components/BrandFooter.astro";
+import siteConfig from "../data/config.json";
+import type { SiteConfig } from "../types/config";
+
+const config = siteConfig as SiteConfig;
+---
+
+<Layout title={config.appName} description={config.appDescription}>
+  <div id="root">
+    <main class="brand-home" id="brand-home">
+      <div class="brand-hero" id="brand-hero">
+        <div class="brand-view">
+          <h1 class="brand-title" id="app-title">{config.appTitle}</h1>
+          <div class="hero-stage">
+            <CreatorFeed videos={config.creatorVideos} />
+            <BookingPanel bookingTitle={config.bookingTitle} />
+          </div>
+        </div>
+      </div>
+
+      <BrandSideLeft
+        appName={config.appName}
+        appDescription={config.appDescription}
+        appStoreUrl={config.appStoreUrl}
+      />
+      <BrandFooter />
+    </main>
+  </div>
+</Layout>
+
+<script>
+  import { initReadyState } from "../scripts/ready-state";
+  import { initGetApp } from "../scripts/get-app";
+  import { initScrollAnimation } from "../scripts/scroll-animation";
+  import { initCalBooking } from "../scripts/cal-embed";
+  import siteConfig from "../data/config.json";
+
+  initReadyState();
+  initGetApp(siteConfig.appStoreUrl);
+  initScrollAnimation();
+  initCalBooking();
+</script>
