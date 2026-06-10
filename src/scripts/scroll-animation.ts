@@ -1,8 +1,28 @@
+const MOBILE_MEDIA = "(max-width: 900px), ((max-width: 1100px) and (orientation: portrait))";
+
+function isMobileLayout(): boolean {
+  return window.matchMedia(MOBILE_MEDIA).matches;
+}
+
+function applyMobileScrollState(home: HTMLElement, booking: HTMLElement | null): void {
+  home.style.setProperty("--scroll-progress", "1");
+  if (booking) {
+    booking.classList.add("is-interactive");
+  }
+}
+
 export function initScrollAnimation(): void {
   const hero = document.getElementById("brand-hero");
   const home = document.getElementById("brand-home");
   const booking = document.getElementById("booking-panel");
   if (!hero || !home) return;
+
+  const mobileQuery = window.matchMedia(MOBILE_MEDIA);
+
+  if (isMobileLayout()) {
+    applyMobileScrollState(home, booking);
+    return;
+  }
 
   const supportsScrollTimeline = CSS.supports("animation-timeline", "scroll()");
 
@@ -45,4 +65,10 @@ export function initScrollAnimation(): void {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
+
+  mobileQuery.addEventListener("change", (event) => {
+    if (event.matches) {
+      applyMobileScrollState(home, booking);
+    }
+  });
 }
