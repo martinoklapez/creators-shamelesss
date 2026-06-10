@@ -10,7 +10,13 @@ import type { SiteConfig } from "../types/config";
 const config = siteConfig as SiteConfig;
 ---
 
-<Layout title={config.appName} description={config.appDescription}>
+<Layout
+  title={config.appName}
+  description={config.appDescription}
+  shareTitle={config.shareTitle}
+  shareDescription={config.shareDescription}
+  shareImage={config.shareImage}
+>
   <div id="root">
     <main class="brand-home" id="brand-home">
       <div class="brand-hero" id="brand-hero">
