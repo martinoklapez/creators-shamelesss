@@ -329,6 +329,7 @@ body {
 @media (max-width: 900px), ((max-width: 1100px) and (orientation: portrait)) {
   .brand-home {
     --card-w: min(90vw, 380px);
+    --mobile-hero-offset: clamp(150px, 34dvh, 300px);
     --scroll-progress: 1;
   }
 
@@ -347,9 +348,13 @@ body {
   }
 
   .brand-title {
+    align-items: center;
     animation: none !important;
+    display: flex;
     font-size: clamp(28px, 9vw, 40px);
     font-weight: 600;
+    height: var(--mobile-hero-offset);
+    justify-content: center;
     left: 6vw;
     letter-spacing: -0.03em;
     line-height: 1.05;
@@ -359,7 +364,7 @@ body {
     position: absolute;
     right: 6vw;
     text-align: center;
-    top: calc(16px + env(safe-area-inset-top, 0px));
+    top: env(safe-area-inset-top, 0px);
     transform: none !important;
     z-index: 5;
   }
@@ -370,7 +375,7 @@ body {
     gap: 10vw;
     justify-content: flex-start;
     padding:
-      calc(clamp(150px, 34dvh, 300px) + env(safe-area-inset-top, 0px))
+      calc(var(--mobile-hero-offset) + env(safe-area-inset-top, 0px))
       0
       8vw;
     width: 100%;
@@ -542,14 +547,11 @@ body {
 @media (max-width: 900px) and (orientation: landscape) {
   .brand-home {
     --card-w: min(42vh, 280px);
+    --mobile-hero-offset: clamp(80px, 18dvh, 140px);
   }
 
   .brand-title {
     font-size: clamp(22px, 5vw, 32px);
-  }
-
-  .hero-stage {
-    padding-top: calc(clamp(80px, 18dvh, 140px) + env(safe-area-inset-top, 0px));
   }
 
   #my-cal-inline-shamelesss,
