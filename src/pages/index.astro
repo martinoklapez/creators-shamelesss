@@ -16,8 +16,10 @@ const config = siteConfig as SiteConfig;
       <div class="brand-hero" id="brand-hero">
         <div class="brand-view">
           <div class="brand-hero-heading" id="app-heading">
-            <h1 class="brand-title" id="app-title">{config.appTitle}</h1>
-            <h2 class="brand-subtitle">{config.heroSubtitle}</h2>
+            <h1 class="brand-title" id="app-title">
+              {config.appTitle}
+              <span class="brand-subtitle">{config.heroSubtitle}</span>
+            </h1>
           </div>
           <div class="hero-stage">
             <CreatorFeed videos={config.creatorVideos} />
