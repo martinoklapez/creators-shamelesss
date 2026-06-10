@@ -347,7 +347,20 @@ body {
   }
 
   .brand-title {
-    display: none;
+    animation: none !important;
+    font-size: clamp(28px, 9vw, 40px);
+    font-weight: 600;
+    left: auto;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0;
+    opacity: 1 !important;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 6vw 4vw;
+    position: relative;
+    right: auto;
+    text-align: center;
+    top: auto;
+    transform: none !important;
   }
 
   .hero-stage {
@@ -355,10 +368,7 @@ body {
     flex: 1;
     gap: 10vw;
     justify-content: flex-start;
-    padding:
-      calc(clamp(150px, 34dvh, 300px) + env(safe-area-inset-top, 0px))
-      0
-      8vw;
+    padding: 0 0 8vw;
     width: 100%;
   }
 
@@ -530,8 +540,9 @@ body {
     --card-w: min(42vh, 280px);
   }
 
-  .hero-stage {
-    padding-top: calc(clamp(80px, 18dvh, 140px) + env(safe-area-inset-top, 0px));
+  .brand-title {
+    font-size: clamp(22px, 5vw, 32px);
+    padding-bottom: 2vw;
   }
 
   #my-cal-inline-shamelesss,
