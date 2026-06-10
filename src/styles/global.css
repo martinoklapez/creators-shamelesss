@@ -355,7 +355,10 @@ body {
     flex: 1;
     gap: 10vw;
     justify-content: flex-start;
-    padding: calc(10px + env(safe-area-inset-top, 0px)) 0 8vw;
+    padding:
+      calc(clamp(150px, 34dvh, 300px) + env(safe-area-inset-top, 0px))
+      0
+      8vw;
     width: 100%;
   }
 
@@ -528,7 +531,7 @@ body {
   }
 
   .hero-stage {
-    padding-top: calc(6px + env(safe-area-inset-top, 0px));
+    padding-top: calc(clamp(80px, 18dvh, 140px) + env(safe-area-inset-top, 0px));
   }
 
   #my-cal-inline-shamelesss,
